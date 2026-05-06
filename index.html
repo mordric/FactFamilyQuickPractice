@@ -274,6 +274,64 @@
             background-color: #1976D2;
         }
 
+        .timer-settings {
+            background-color: #fff3cd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #ffc107;
+        }
+
+        .timer-settings h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .timer-toggle {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .timer-toggle input[type="checkbox"] {
+            width: 30px;
+            height: 30px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .timer-toggle label {
+            font-size: 16px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .timer-input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .timer-input-group label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .timer-input-group input[type="number"] {
+            width: 80px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .timer-input-group span {
+            font-size: 16px;
+            color: #666;
+        }
+
         #statsScreen {
             background-color: #ffffff;
         }
@@ -455,7 +513,7 @@
                 <button class="num-btn" onclick="pressNumber(7)">7</button>
                 <button class="num-btn" onclick="pressNumber(8)">8</button>
                 <button class="num-btn" onclick="pressNumber(9)">9</button>
-                <button class="num-btn delete-btn" onclick="deleteNumber()">?</button>
+                <button class="num-btn delete-btn" onclick="deleteNumber()">&#9003;</button>
                 <button class="num-btn" onclick="pressNumber(0)">0</button>
                 <button class="num-btn" style="visibility: hidden;"></button>
             </div>
@@ -469,7 +527,21 @@
             <div style="width: 48px;"></div>
         </div>
         
+        
         <div class="config-content">
+            <div class="timer-settings">
+                <h3>&#9201; Timer Settings</h3>
+                <div class="timer-toggle">
+                    <input type="checkbox" id="timerEnabledCheckbox" onchange="toggleTimerSetting()">
+                    <label for="timerEnabledCheckbox">Enable answer timer</label>
+                </div>
+                <div class="timer-input-group" id="timerInputGroup" style="display: none;">
+                    <label for="timeLimitInput">Time limit:</label>
+                    <input type="number" id="timeLimitInput" min="1" max="60" value="5">
+                    <span>seconds</span>
+                </div>
+            </div>
+            
             <button class="select-all-btn" onclick="toggleAll()">Select/Deselect All</button>
             <div id="factFamilyList"></div>
         </div>
@@ -520,6 +592,9 @@
         let enabledFamilies = [];
         let allProblems = [];
         let problemStats = {};
+        let timerEnabled = false;
+        let timeLimit = 5;
+        let problemTimer = null;
 
         function generateAllFactFamilies() {
             const families = [];
@@ -637,6 +712,18 @@
                 blank.id = `blank${i}`;
                 blanksContainer.appendChild(blank);
             }
+            
+            if (problemTimer) {
+                clearTimeout(problemTimer);
+            }
+            
+            if (timerEnabled && timeLimit > 0) {
+                problemTimer = setTimeout(() => {
+                    if (currentAnswer.length < currentProblem.answer.length) {
+                        handleTimeout();
+                    }
+                }, timeLimit * 1000);
+            }
         }
 
         function pressNumber(num) {
@@ -645,6 +732,9 @@
                 updateBlanks();
                 
                 if (currentAnswer.length === currentProblem.answer.length) {
+                    if (problemTimer) {
+                        clearTimeout(problemTimer);
+                    }
                     setTimeout(() => gradeAnswer(), 300);
                 }
             }
@@ -680,11 +770,11 @@
             
             if (isCorrect) {
                 overlay.className = 'flash-overlay show correct';
-                icon.textContent = '?';
+                icon.innerHTML = '&#10003;';
                 message.textContent = 'Correct!';
             } else {
                 overlay.className = 'flash-overlay show incorrect';
-                icon.textContent = '?';
+                icon.innerHTML = '&#10007;';
                 message.textContent = `Correct answer: ${currentProblem.answer}`;
             }
             
@@ -694,16 +784,52 @@
             }, 1500);
         }
 
+        function handleTimeout() {
+            if (problemTimer) {
+                clearTimeout(problemTimer);
+            }
+            
+            const overlay = document.getElementById('flashOverlay');
+            const icon = document.getElementById('flashIcon');
+            const message = document.getElementById('flashMessage');
+            
+            overlay.className = 'flash-overlay show incorrect';
+            icon.innerHTML = '&#9201;';
+            message.textContent = `Time's up! Correct answer: ${currentProblem.answer}`;
+            
+            setTimeout(() => {
+                overlay.className = 'flash-overlay';
+                showNewProblem();
+            }, 1500);
+        }
+
         function showConfigScreen() {
+            if (problemTimer) {
+                clearTimeout(problemTimer);
+                problemTimer = null;
+            }
+            
             document.getElementById('mainScreen').classList.remove('active');
             document.getElementById('configScreen').classList.add('active');
             renderFactFamilies();
+            
+            document.getElementById('timerEnabledCheckbox').checked = timerEnabled;
+            document.getElementById('timeLimitInput').value = timeLimit;
+            document.getElementById('timerInputGroup').style.display = timerEnabled ? 'flex' : 'none';
         }
 
         function showMainScreen() {
             document.getElementById('configScreen').classList.remove('active');
             document.getElementById('statsScreen').classList.remove('active');
             document.getElementById('mainScreen').classList.add('active');
+            
+            if (timerEnabled && timeLimit > 0 && currentProblem && currentAnswer.length < currentProblem.answer.length) {
+                problemTimer = setTimeout(() => {
+                    if (currentAnswer.length < currentProblem.answer.length) {
+                        handleTimeout();
+                    }
+                }, timeLimit * 1000);
+            }
         }
 
         function cancelConfig() {
@@ -711,6 +837,11 @@
         }
 
         function showStatsScreen() {
+            if (problemTimer) {
+                clearTimeout(problemTimer);
+                problemTimer = null;
+            }
+            
             document.getElementById('mainScreen').classList.remove('active');
             document.getElementById('statsScreen').classList.add('active');
             renderStats();
@@ -867,9 +998,21 @@
             renderFactFamilies();
         }
 
+        function toggleTimerSetting() {
+            const checkbox = document.getElementById('timerEnabledCheckbox');
+            const inputGroup = document.getElementById('timerInputGroup');
+            inputGroup.style.display = checkbox.checked ? 'flex' : 'none';
+        }
+
         function saveConfig() {
+            timerEnabled = document.getElementById('timerEnabledCheckbox').checked;
+            const timeLimitValue = parseInt(document.getElementById('timeLimitInput').value);
+            timeLimit = (timeLimitValue >= 1 && timeLimitValue <= 60) ? timeLimitValue : 5;
+            
             try {
                 localStorage.setItem('quickmath-config', JSON.stringify(enabledFamilies));
+                localStorage.setItem('quickmath-timer-enabled', JSON.stringify(timerEnabled));
+                localStorage.setItem('quickmath-time-limit', JSON.stringify(timeLimit));
             } catch (e) {
                 console.log('Could not save to localStorage:', e);
             }
@@ -887,9 +1030,21 @@
                 } else {
                     enabledFamilies = allFactFamilies.map(f => f.id);
                 }
+                
+                const savedTimerEnabled = localStorage.getItem('quickmath-timer-enabled');
+                if (savedTimerEnabled !== null) {
+                    timerEnabled = JSON.parse(savedTimerEnabled);
+                }
+                
+                const savedTimeLimit = localStorage.getItem('quickmath-time-limit');
+                if (savedTimeLimit !== null) {
+                    timeLimit = JSON.parse(savedTimeLimit);
+                }
             } catch (e) {
                 console.log('Could not load from localStorage:', e);
                 enabledFamilies = allFactFamilies.map(f => f.id);
+                timerEnabled = false;
+                timeLimit = 5;
             }
         }
 
