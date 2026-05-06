@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>QuickMath - Practice Your Math Facts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f0f0f0;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .screen {
+            display: none;
+            height: 100vh;
+            width: 100vw;
+            flex-direction: column;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        #mainScreen {
+            background-color: #ffffff;
+        }
+
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 24px;
+        }
+
+        .settings-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+
+        .problem-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .math-problem {
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .answer-blanks {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .blank {
+            width: 60px;
+            height: 80px;
+            border: 3px solid #4CAF50;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+            background-color: white;
+        }
+
+        .numberpad-area {
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .numberpad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .num-btn {
+            background-color: #ffffff;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 32px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.1s;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .num-btn:active {
+            background-color: #e0e0e0;
+            transform: scale(0.95);
+        }
+
+        .delete-btn {
+            background-color: #ff5252;
+            color: white;
+            border: none;
+        }
+
+        .delete-btn:active {
+            background-color: #d32f2f;
+        }
+
+        .flash-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            flex-direction: column;
+        }
+
+        .flash-overlay.show {
+            display: flex;
+        }
+
+        .flash-overlay.correct {
+            background-color: rgba(76, 175, 80, 0.95);
+        }
+
+        .flash-overlay.incorrect {
+            background-color: rgba(244, 67, 54, 0.95);
+        }
+
+        .flash-icon {
+            font-size: 120px;
+            margin-bottom: 20px;
+        }
+
+        .flash-message {
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+        }
+
+        #configScreen {
+            background-color: #ffffff;
+        }
+
+        .config-header {
+            background-color: #2196F3;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .config-header h1 {
+            font-size: 24px;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+
+        .config-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .fact-family-group {
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .fact-family-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .fact-family-checkbox {
+            width: 30px;
+            height: 30px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .fact-family-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .fact-family-examples {
+            font-size: 14px;
+            color: #666;
+            margin-left: 45px;
+            line-height: 1.6;
+        }
+
+        .save-btn {
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+        }
+
+        .save-btn:active {
+            background-color: #45a049;
+        }
+
+        .select-all-btn {
+            width: 100%;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .select-all-btn:active {
+            background-color: #1976D2;
+        }
+
+        #statsScreen {
+            background-color: #ffffff;
+        }
+
+        .stats-header {
+            background-color: #FF9800;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stats-header h1 {
+            font-size: 24px;
+        }
+
+        .stats-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .stats-summary {
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .stats-summary h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .summary-item {
+            text-align: center;
+        }
+
+        .summary-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #FF9800;
+        }
+
+        .summary-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stats-table th {
+            background-color: #FF9800;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .stats-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 16px;
+        }
+
+        .stats-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .stats-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .problem-col {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .accuracy-bar {
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .accuracy-fill {
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.3s ease;
+        }
+
+        .accuracy-fill.low {
+            background-color: #f44336;
+        }
+
+        .accuracy-fill.medium {
+            background-color: #FF9800;
+        }
+
+        .accuracy-text {
+            font-size: 14px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .reset-stats-btn {
+            width: 100%;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .reset-stats-btn:active {
+            background-color: #d32f2f;
+        }
+
+        .no-data-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-size: 18px;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="mainScreen" class="screen active">
+        <div class="header">
+            <h1>QuickMath</h1>
+            <div class="header-buttons">
+                <button class="settings-btn" onclick="showStatsScreen()">&#128202;</button>
+                <button class="settings-btn" onclick="showConfigScreen()">&#9881;</button>
+            </div>
+        </div>
+        
+        <div class="problem-area">
+            <div class="math-problem" id="problemDisplay"></div>
+            <div class="answer-blanks" id="answerBlanks"></div>
+        </div>
+        
+        <div class="numberpad-area">
+            <div class="numberpad">
+                <button class="num-btn" onclick="pressNumber(1)">1</button>
+                <button class="num-btn" onclick="pressNumber(2)">2</button>
+                <button class="num-btn" onclick="pressNumber(3)">3</button>
+                <button class="num-btn" onclick="pressNumber(4)">4</button>
+                <button class="num-btn" onclick="pressNumber(5)">5</button>
+                <button class="num-btn" onclick="pressNumber(6)">6</button>
+                <button class="num-btn" onclick="pressNumber(7)">7</button>
+                <button class="num-btn" onclick="pressNumber(8)">8</button>
+                <button class="num-btn" onclick="pressNumber(9)">9</button>
+                <button class="num-btn delete-btn" onclick="deleteNumber()">?</button>
+                <button class="num-btn" onclick="pressNumber(0)">0</button>
+                <button class="num-btn" style="visibility: hidden;"></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="configScreen" class="screen">
+        <div class="config-header">
+            <button class="back-btn" onclick="cancelConfig()">?</button>
+            <h1>Configure Facts</h1>
+            <div style="width: 48px;"></div>
+        </div>
+        
+        <div class="config-content">
+            <button class="select-all-btn" onclick="toggleAll()">Select/Deselect All</button>
+            <div id="factFamilyList"></div>
+        </div>
+        
+        <button class="save-btn" onclick="saveConfig()">Save & Start Practice</button>
+    </div>
+
+    <div id="statsScreen" class="screen">
+        <div class="stats-header">
+            <button class="back-btn" onclick="closeStatsScreen()">?</button>
+            <h1>Statistics</h1>
+            <div style="width: 48px;"></div>
+        </div>
+        
+        <div class="stats-content">
+            <div class="stats-summary">
+                <h2>Overall Progress</h2>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <div class="summary-value" id="totalAsked">0</div>
+                        <div class="summary-label">Total Asked</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-value" id="totalCorrect">0</div>
+                        <div class="summary-label">Total Correct</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-value" id="overallAccuracy">0%</div>
+                        <div class="summary-label">Overall Accuracy</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="statsTableContainer"></div>
+            
+            <button class="reset-stats-btn" onclick="confirmResetStats()">Reset All Statistics</button>
+        </div>
+    </div>
+
+    <div id="flashOverlay" class="flash-overlay">
+        <div class="flash-icon" id="flashIcon"></div>
+        <div class="flash-message" id="flashMessage"></div>
+    </div>
+
+    <script>
+        let currentProblem = null;
+        let currentAnswer = '';
+        let enabledFamilies = [];
+        let allProblems = [];
+        let problemStats = {};
+
+        function generateAllFactFamilies() {
+            const families = [];
+            for (let a = 0; a <= 12; a++) {
+                for (let b = a; b <= 12; b++) {
+                    const c = a * b;
+                    families.push({
+                        a: a,
+                        b: b,
+                        c: c,
+                        id: `${a}-${b}`
+                    });
+                }
+            }
+            return families;
+        }
+
+        const allFactFamilies = generateAllFactFamilies();
+
+        function generateProblems() {
+            allProblems = [];
+            enabledFamilies.forEach(familyId => {
+                const family = allFactFamilies.find(f => f.id === familyId);
+                if (family) {
+                    const { a, b, c } = family;
+                    
+                    const prob1 = {
+                        display: `${a} \u00D7 ${b} = ?`,
+                        answer: c.toString(),
+                        id: `${a}*${b}`
+                    };
+                    allProblems.push(prob1);
+                    if (!problemStats[prob1.id]) {
+                        problemStats[prob1.id] = { asked: 0, correct: 0 };
+                    }
+                    
+                    if (a !== b) {
+                        const prob2 = {
+                            display: `${b} \u00D7 ${a} = ?`,
+                            answer: c.toString(),
+                            id: `${b}*${a}`
+                        };
+                        allProblems.push(prob2);
+                        if (!problemStats[prob2.id]) {
+                            problemStats[prob2.id] = { asked: 0, correct: 0 };
+                        }
+                    }
+                    
+                    if (a !== 0) {
+                        const prob3 = {
+                            display: `${c} \u00F7 ${a} = ?`,
+                            answer: b.toString(),
+                            id: `${c}/${a}`
+                        };
+                        allProblems.push(prob3);
+                        if (!problemStats[prob3.id]) {
+                            problemStats[prob3.id] = { asked: 0, correct: 0 };
+                        }
+                    }
+                    
+                    if (b !== 0 && a !== b) {
+                        const prob4 = {
+                            display: `${c} \u00F7 ${b} = ?`,
+                            answer: a.toString(),
+                            id: `${c}/${b}`
+                        };
+                        allProblems.push(prob4);
+                        if (!problemStats[prob4.id]) {
+                            problemStats[prob4.id] = { asked: 0, correct: 0 };
+                        }
+                    } else if (b !== 0 && a === b) {
+                        const prob5 = {
+                            display: `${c} \u00F7 ${b} = ?`,
+                            answer: a.toString(),
+                            id: `${c}/${b}`
+                        };
+                        allProblems.push(prob5);
+                        if (!problemStats[prob5.id]) {
+                            problemStats[prob5.id] = { asked: 0, correct: 0 };
+                        }
+                    }
+                }
+            });
+        }
+
+        function getRandomProblem() {
+            if (allProblems.length === 0) {
+                return {
+                    display: 'No facts selected!',
+                    answer: '0'
+                };
+            }
+            const randomIndex = Math.floor(Math.random() * allProblems.length);
+            return allProblems[randomIndex];
+        }
+
+        function showNewProblem() {
+            currentProblem = getRandomProblem();
+            currentAnswer = '';
+            
+            if (currentProblem.id && problemStats[currentProblem.id]) {
+                problemStats[currentProblem.id].asked++;
+                saveStats();
+            }
+            
+            document.getElementById('problemDisplay').textContent = currentProblem.display;
+            
+            const blanksContainer = document.getElementById('answerBlanks');
+            blanksContainer.innerHTML = '';
+            const answerLength = currentProblem.answer.length;
+            
+            for (let i = 0; i < answerLength; i++) {
+                const blank = document.createElement('div');
+                blank.className = 'blank';
+                blank.id = `blank${i}`;
+                blanksContainer.appendChild(blank);
+            }
+        }
+
+        function pressNumber(num) {
+            if (currentAnswer.length < currentProblem.answer.length) {
+                currentAnswer += num.toString();
+                updateBlanks();
+                
+                if (currentAnswer.length === currentProblem.answer.length) {
+                    setTimeout(() => gradeAnswer(), 300);
+                }
+            }
+        }
+
+        function deleteNumber() {
+            if (currentAnswer.length > 0) {
+                currentAnswer = currentAnswer.slice(0, -1);
+                updateBlanks();
+            }
+        }
+
+        function updateBlanks() {
+            for (let i = 0; i < currentProblem.answer.length; i++) {
+                const blank = document.getElementById(`blank${i}`);
+                if (blank) {
+                    blank.textContent = currentAnswer[i] || '';
+                }
+            }
+        }
+
+        function gradeAnswer() {
+            const isCorrect = currentAnswer === currentProblem.answer;
+            
+            if (isCorrect && currentProblem.id && problemStats[currentProblem.id]) {
+                problemStats[currentProblem.id].correct++;
+                saveStats();
+            }
+            
+            const overlay = document.getElementById('flashOverlay');
+            const icon = document.getElementById('flashIcon');
+            const message = document.getElementById('flashMessage');
+            
+            if (isCorrect) {
+                overlay.className = 'flash-overlay show correct';
+                icon.textContent = '?';
+                message.textContent = 'Correct!';
+            } else {
+                overlay.className = 'flash-overlay show incorrect';
+                icon.textContent = '?';
+                message.textContent = `Correct answer: ${currentProblem.answer}`;
+            }
+            
+            setTimeout(() => {
+                overlay.className = 'flash-overlay';
+                showNewProblem();
+            }, 1500);
+        }
+
+        function showConfigScreen() {
+            document.getElementById('mainScreen').classList.remove('active');
+            document.getElementById('configScreen').classList.add('active');
+            renderFactFamilies();
+        }
+
+        function showMainScreen() {
+            document.getElementById('configScreen').classList.remove('active');
+            document.getElementById('statsScreen').classList.remove('active');
+            document.getElementById('mainScreen').classList.add('active');
+        }
+
+        function cancelConfig() {
+            showMainScreen();
+        }
+
+        function showStatsScreen() {
+            document.getElementById('mainScreen').classList.remove('active');
+            document.getElementById('statsScreen').classList.add('active');
+            renderStats();
+        }
+
+        function closeStatsScreen() {
+            showMainScreen();
+        }
+
+        function renderStats() {
+            const statsEntries = Object.entries(problemStats);
+            
+            let totalAsked = 0;
+            let totalCorrect = 0;
+            
+            statsEntries.forEach(([id, stats]) => {
+                totalAsked += stats.asked;
+                totalCorrect += stats.correct;
+            });
+            
+            document.getElementById('totalAsked').textContent = totalAsked;
+            document.getElementById('totalCorrect').textContent = totalCorrect;
+            
+            const overallAccuracy = totalAsked > 0 ? Math.round((totalCorrect / totalAsked) * 100) : 0;
+            document.getElementById('overallAccuracy').textContent = overallAccuracy + '%';
+            
+            const container = document.getElementById('statsTableContainer');
+            
+            if (statsEntries.length === 0 || totalAsked === 0) {
+                container.innerHTML = '<div class="no-data-message">No practice data yet. Start practicing to see your statistics!</div>';
+                return;
+            }
+            
+            const sortedStats = statsEntries
+                .filter(([id, stats]) => stats.asked > 0)
+                .sort((a, b) => {
+                    const accuracyA = a[1].asked > 0 ? a[1].correct / a[1].asked : 0;
+                    const accuracyB = b[1].asked > 0 ? b[1].correct / b[1].asked : 0;
+                    return accuracyA - accuracyB;
+                });
+            
+            let tableHTML = `
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Problem</th>
+                            <th>Asked</th>
+                            <th>Correct</th>
+                            <th>Accuracy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            sortedStats.forEach(([id, stats]) => {
+                const accuracy = stats.asked > 0 ? Math.round((stats.correct / stats.asked) * 100) : 0;
+                const accuracyClass = accuracy >= 80 ? '' : accuracy >= 60 ? 'medium' : 'low';
+                
+                const problemDisplay = id.replace('*', ' × ').replace('/', ' ÷ ');
+                
+                tableHTML += `
+                    <tr>
+                        <td class="problem-col">${problemDisplay}</td>
+                        <td>${stats.asked}</td>
+                        <td>${stats.correct}</td>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div class="accuracy-bar" style="flex: 1;">
+                                    <div class="accuracy-fill ${accuracyClass}" style="width: ${accuracy}%"></div>
+                                </div>
+                                <span class="accuracy-text">${accuracy}%</span>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            tableHTML += `
+                    </tbody>
+                </table>
+            `;
+            
+            container.innerHTML = tableHTML;
+        }
+
+        function confirmResetStats() {
+            if (confirm('Are you sure you want to reset all statistics? This cannot be undone.')) {
+                problemStats = {};
+                saveStats();
+                renderStats();
+            }
+        }
+
+
+        function renderFactFamilies() {
+            const container = document.getElementById('factFamilyList');
+            container.innerHTML = '';
+            
+            const grouped = {};
+            allFactFamilies.forEach(family => {
+                if (!grouped[family.a]) {
+                    grouped[family.a] = [];
+                }
+                grouped[family.a].push(family);
+            });
+            
+            Object.keys(grouped).sort((a, b) => parseInt(a) - parseInt(b)).forEach(key => {
+                const families = grouped[key];
+                families.forEach(family => {
+                    const div = document.createElement('div');
+                    div.className = 'fact-family-group';
+                    
+                    const isChecked = enabledFamilies.includes(family.id);
+                    
+                    div.innerHTML = `
+                        <div class="fact-family-header">
+                            <input type="checkbox" class="fact-family-checkbox" 
+                                   id="family-${family.id}" 
+                                   ${isChecked ? 'checked' : ''}
+                                   onchange="toggleFamily('${family.id}')">
+                            <label for="family-${family.id}" class="fact-family-title">
+                                ${family.a} \u00D7 ${family.b} Family
+                            </label>
+                        </div>
+                        <div class="fact-family-examples">
+                            ${family.a} \u00D7 ${family.b} = ${family.c}<br>
+                            ${family.b} \u00D7 ${family.a} = ${family.c}<br>
+                            ${family.a !== 0 ? `${family.c} \u00F7 ${family.a} = ${family.b}<br>` : ''}
+                            ${family.b !== 0 ? `${family.c} \u00F7 ${family.b} = ${family.a}` : ''}
+                        </div>
+                    `;
+                    
+                    container.appendChild(div);
+                });
+            });
+        }
+
+        function toggleFamily(familyId) {
+            const index = enabledFamilies.indexOf(familyId);
+            if (index > -1) {
+                enabledFamilies.splice(index, 1);
+            } else {
+                enabledFamilies.push(familyId);
+            }
+        }
+
+        function toggleAll() {
+            const allChecked = enabledFamilies.length === allFactFamilies.length;
+            if (allChecked) {
+                enabledFamilies = [];
+            } else {
+                enabledFamilies = allFactFamilies.map(f => f.id);
+            }
+            renderFactFamilies();
+        }
+
+        function saveConfig() {
+            try {
+                localStorage.setItem('quickmath-config', JSON.stringify(enabledFamilies));
+            } catch (e) {
+                console.log('Could not save to localStorage:', e);
+            }
+            
+            generateProblems();
+            showMainScreen();
+            showNewProblem();
+        }
+
+        function loadConfig() {
+            try {
+                const saved = localStorage.getItem('quickmath-config');
+                if (saved) {
+                    enabledFamilies = JSON.parse(saved);
+                } else {
+                    enabledFamilies = allFactFamilies.map(f => f.id);
+                }
+            } catch (e) {
+                console.log('Could not load from localStorage:', e);
+                enabledFamilies = allFactFamilies.map(f => f.id);
+            }
+        }
+
+        function saveStats() {
+            try {
+                localStorage.setItem('quickmath-stats', JSON.stringify(problemStats));
+            } catch (e) {
+                console.log('Could not save stats to localStorage:', e);
+            }
+        }
+
+        function loadStats() {
+            try {
+                const saved = localStorage.getItem('quickmath-stats');
+                if (saved) {
+                    problemStats = JSON.parse(saved);
+                } else {
+                    problemStats = {};
+                }
+            } catch (e) {
+                console.log('Could not load stats from localStorage:', e);
+                problemStats = {};
+            }
+        }
+
+        function init() {
+            loadConfig();
+            loadStats();
+            generateProblems();
+            showNewProblem();
+        }
+
+        init();
+    </script>
+</body>
+</html>
