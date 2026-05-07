@@ -2,16 +2,16 @@
 
 A fast-paced, interactive web app designed to help students practice multiplication and division facts. Perfect for building math fluency and confidence!
 
-## ?? Try It Now
+##  Try It Now
 
 Visit the app at: https://mordric.github.io/FactFamilyQuickPractice/
 
-## ? Features
+##  Features
 
 ### Core Functionality
 - **Interactive Practice**: Answer math problems using an easy-to-use number pad interface
 - **Instant Feedback**: Get immediate visual feedback on your answers
-- **Comprehensive Coverage**: Practice multiplication and division facts from 0×0 through 12×12
+- **Comprehensive Coverage**: Practice multiplication and division facts from 0Ã—0 through 12Ã—12
 - **Customizable Practice**: Choose exactly which fact families and equations you want to practice
 
 ### Advanced Features
@@ -45,16 +45,16 @@ Visit the app at: https://mordric.github.io/FactFamilyQuickPractice/
 - Use the **backspace button (?)** to delete numbers
 - Answers are automatically submitted when the correct number of digits is entered
 
-## ?? Settings & Configuration
+##  Settings & Configuration
 
 ### Problem Types
 Choose which types of problems to practice:
-- **Multiplication Only**: Practice only multiplication facts (e.g., 3 × 4 = ?)
-- **Division Only**: Practice only division facts (e.g., 12 ÷ 3 = ?)
+- **Multiplication Only**: Practice only multiplication facts (e.g., 3 Ã— 4 = ?)
+- **Division Only**: Practice only division facts (e.g., 12 Ã· 3 = ?)
 - **Both**: Practice a mix of multiplication and division
 
 ### Fact Families
-- Select individual fact families (e.g., 3 × 4 family)
+- Select individual fact families (e.g., 3 Ã— 4 family)
 - Use **Select/Deselect All** to quickly toggle all families
 - Expand each family to enable/disable individual equations
 
@@ -119,7 +119,7 @@ All data is stored locally in your browser using localStorage:
 
 **Note**: Clearing your browser data will erase your statistics and settings.
 
-## ?? Mobile Friendly
+##  Mobile Friendly
 
 QuickMath works great on all devices:
 - Responsive design adapts to any screen size
@@ -135,25 +135,25 @@ QuickMath works great on all devices:
 5. **Check Your Stats**: Review your statistics regularly to identify which facts need more practice
 6. **Practice Regularly**: Short, frequent practice sessions are more effective than long, infrequent ones
 
-## ??? Technical Details
+##  Technical Details
 
 - **No Installation Required**: Runs entirely in your web browser
 - **No Internet Required**: Works offline after the initial load
 - **No Account Needed**: No sign-up, no login, no personal data collection
 - **Pure HTML/CSS/JavaScript**: Single-file app with no external dependencies
 
-## ?? License
+##  License
 
 This project is open source and available for anyone to use, modify, and share.
 
-## ?? Found a Bug?
+##  Found a Bug?
 
 If you encounter any issues or have suggestions for improvements, please open an issue on the GitHub repository.
 
-## ?? Credits
+##  Credits
 
-Created to help students build confidence and fluency with multiplication and division facts.
+Created by Jay Murphree to help students build confidence and fluency with multiplication and division facts.
 
 ---
 
-**Happy Practicing! ??**
+**Happy Practicing! **
