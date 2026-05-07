@@ -22,7 +22,7 @@ Visit the app at: https://mordric.github.io/FactFamilyQuickPractice/
 - **Persistent Mastery**: Option to permanently skip mastered equations in future sessions
 - **Detailed Statistics**: Track your performance for each equation with accuracy percentages and visual progress bars
 
-## ?? How to Use
+##  How to Use
 
 ### Getting Started
 1. Open the app in your web browser
@@ -83,7 +83,7 @@ Set goals to end your practice session automatically:
 - **Persistent Mode**: Mastered equations stay removed in future sessions
 - View and reset mastered equations in the Statistics screen
 
-## ?? Statistics
+##  Statistics
 
 The Statistics screen provides detailed insights into your practice:
 
@@ -126,7 +126,7 @@ QuickMath works great on all devices:
 - Touch-friendly buttons for tablets and phones
 - No installation required - just visit the website!
 
-## ?? Tips for Effective Practice
+##  Tips for Effective Practice
 
 1. **Start Small**: Begin with easier fact families (0-5) before moving to harder ones
 2. **Use the Timer**: Challenge yourself with a time limit to build speed
