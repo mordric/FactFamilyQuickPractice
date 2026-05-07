@@ -172,6 +172,32 @@
             text-align: center;
         }
 
+        .close-finish-btn {
+            background-color: white;
+            color: #4CAF50;
+            border: none;
+            padding: 15px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: all 0.2s;
+        }
+
+        .close-finish-btn:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+        }
+
+        .close-finish-btn:active {
+            background-color: #e0e0e0;
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
         #configScreen {
             background-color: #ffffff;
         }
@@ -191,12 +217,24 @@
         }
 
         .back-btn {
-            background: none;
-            border: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 8px;
             color: white;
             font-size: 28px;
             cursor: pointer;
-            padding: 5px 10px;
+            padding: 8px 15px;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .back-btn:active {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(0);
         }
 
         .config-content {
@@ -237,6 +275,80 @@
             color: #666;
             margin-left: 45px;
             line-height: 1.6;
+        }
+
+        .equation-item {
+            display: flex;
+            align-items: center;
+            padding: 4px 0;
+            gap: 10px;
+        }
+
+        .equation-checkbox {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .equation-text {
+            flex: 1;
+        }
+
+        .equation-item.disabled .equation-text {
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .global-operations {
+            background-color: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #4CAF50;
+        }
+
+        .global-operations h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .global-operation-toggles {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .global-operation-btn {
+            padding: 12px 24px;
+            border: 2px solid #4CAF50;
+            background-color: white;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #4CAF50;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            justify-content: center;
+            min-width: 140px;
+        }
+
+        .global-operation-btn.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .global-operation-btn:hover {
+            background-color: #f1f8f4;
+        }
+
+        .global-operation-btn.active:hover {
+            background-color: #45a049;
         }
 
         .save-btn {
@@ -328,6 +440,73 @@
         }
 
         .timer-input-group span {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .finish-settings {
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #2196F3;
+        }
+
+        .finish-settings h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .finish-option {
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+        }
+
+        .finish-toggle {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .finish-toggle input[type="checkbox"] {
+            width: 30px;
+            height: 30px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .finish-toggle label {
+            font-size: 16px;
+            color: #333;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .finish-input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            margin-left: 45px;
+        }
+
+        .finish-input-group label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .finish-input-group input[type="number"] {
+            width: 80px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .finish-input-group span {
             font-size: 16px;
             color: #666;
         }
@@ -485,6 +664,115 @@
             display: flex;
             gap: 10px;
         }
+
+        .progress-indicators {
+            padding: 15px 20px;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .progress-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background-color: white;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .progress-icon {
+            font-size: 24px;
+        }
+
+        .progress-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .progress-label {
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .progress-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .progress-value.warning {
+            color: #FF9800;
+        }
+
+        .progress-value.urgent {
+            color: #f44336;
+        }
+
+        .pause-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            flex-direction: column;
+        }
+
+        .pause-overlay.show {
+            display: flex;
+        }
+
+        .pause-content {
+            text-align: center;
+            color: white;
+        }
+
+        .pause-icon {
+            font-size: 100px;
+            margin-bottom: 30px;
+        }
+
+        .pause-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        .resume-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 20px 60px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: all 0.2s;
+        }
+
+        .resume-btn:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+        }
+
+        .resume-btn:active {
+            background-color: #3d8b40;
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
     </style>
 </head>
 <body>
@@ -492,10 +780,13 @@
         <div class="header">
             <h1>QuickMath</h1>
             <div class="header-buttons">
-                <button class="settings-btn" onclick="showStatsScreen()">&#128202;</button>
-                <button class="settings-btn" onclick="showConfigScreen()">&#9881;</button>
+                <button class="settings-btn" onclick="togglePause()">&#x23F8;</button>
+                <button class="settings-btn" onclick="showStatsScreen()">&#x1F4CA;</button>
+                <button class="settings-btn" onclick="showConfigScreen()">&#x2699;</button>
             </div>
         </div>
+        
+        <div class="progress-indicators" id="progressIndicators" style="display: none;"></div>
         
         <div class="problem-area">
             <div class="math-problem" id="problemDisplay"></div>
@@ -513,7 +804,7 @@
                 <button class="num-btn" onclick="pressNumber(7)">7</button>
                 <button class="num-btn" onclick="pressNumber(8)">8</button>
                 <button class="num-btn" onclick="pressNumber(9)">9</button>
-                <button class="num-btn delete-btn" onclick="deleteNumber()">&#9003;</button>
+                <button class="num-btn delete-btn" onclick="deleteNumber()">&#x232B;</button>
                 <button class="num-btn" onclick="pressNumber(0)">0</button>
                 <button class="num-btn" style="visibility: hidden;"></button>
             </div>
@@ -522,23 +813,87 @@
 
     <div id="configScreen" class="screen">
         <div class="config-header">
-            <button class="back-btn" onclick="cancelConfig()">?</button>
+            <button class="back-btn" onclick="cancelConfig()">&#x2190;</button>
             <h1>Configure Facts</h1>
             <div style="width: 48px;"></div>
         </div>
         
         
+        
         <div class="config-content">
             <div class="timer-settings">
-                <h3>&#9201; Timer Settings</h3>
+                <h3>&#x23F1; Timer Settings</h3>
                 <div class="timer-toggle">
                     <input type="checkbox" id="timerEnabledCheckbox" onchange="toggleTimerSetting()">
-                    <label for="timerEnabledCheckbox">Enable answer timer</label>
+                    <label for="timerEnabledCheckbox">Enable answer timer - Set a time limit for answering each question</label>
                 </div>
                 <div class="timer-input-group" id="timerInputGroup" style="display: none;">
                     <label for="timeLimitInput">Time limit:</label>
                     <input type="number" id="timeLimitInput" min="1" max="60" value="5">
                     <span>seconds</span>
+                </div>
+            </div>
+
+            <div class="finish-settings">
+                <h3>&#x1F3C1; Finish Conditions</h3>
+                
+                <div class="finish-option">
+                    <div class="finish-toggle">
+                        <input type="checkbox" id="practiceTimeEnabledCheckbox" onchange="togglePracticeTimeSetting()">
+                        <label for="practiceTimeEnabledCheckbox">Practice time limit - End practice after a set amount of time</label>
+                    </div>
+                    <div class="finish-input-group" id="practiceTimeInputGroup" style="display: none;">
+                        <label for="practiceTimeLimitInput">Duration:</label>
+                        <input type="number" id="practiceTimeLimitInput" min="1" max="120" value="10">
+                        <span>minutes</span>
+                    </div>
+                </div>
+
+                <div class="finish-option">
+                    <div class="finish-toggle">
+                        <input type="checkbox" id="correctAnswersEnabledCheckbox" onchange="toggleCorrectAnswersSetting()">
+                        <label for="correctAnswersEnabledCheckbox">Correct answers goal - End practice after reaching a target number of correct answers</label>
+                    </div>
+                    <div class="finish-input-group" id="correctAnswersInputGroup" style="display: none;">
+                        <label for="correctAnswersLimitInput">Goal:</label>
+                        <input type="number" id="correctAnswersLimitInput" min="1" max="500" value="50">
+                        <span>correct answers</span>
+                    </div>
+                </div>
+
+            <div class="finish-option">
+                <div class="finish-toggle">
+                    <input type="checkbox" id="masteryEnabledCheckbox" onchange="toggleMasterySetting()">
+                    <label for="masteryEnabledCheckbox">Mastery check - Remove equations from practice once mastered (answered correctly multiple times in a row)</label>
+                </div>
+                <div class="finish-input-group" id="masteryInputGroup" style="display: none;">
+                    <label for="masteryThresholdInput">Consecutive correct:</label>
+                    <input type="number" id="masteryThresholdInput" min="1" max="20" value="3">
+                    <span>times per equation</span>
+                </div>
+                <div class="finish-input-group" id="masteryPersistentGroup" style="display: none; margin-top: 5px;">
+                    <input type="checkbox" id="masteryPersistentCheckbox" style="width: 24px; height: 24px; margin: 0;">
+                    <label for="masteryPersistentCheckbox" style="cursor: pointer; margin-left: 8px;">Remember mastered equations permanently (Mastered equations will stay removed even in future practice sessions)</label>
+                </div>
+                <div id="masteryResetHint" style="display: none; margin-top: 10px; margin-left: 45px; font-size: 13px; color: #666; font-style: italic;">
+                    &#x1F4A1; Tip: You can reset permanently mastered equations from the Statistics screen
+                </div>
+            </div>
+            </div>
+            
+            <div class="global-operations">
+                <h3>&#x1F4A1; Problem Types</h3>
+                <p style="font-size: 14px; color: #666; margin-bottom: 15px;">Choose which type of problems to practice (applies to all selected fact families)</p>
+                <div class="global-operation-toggles">
+                    <button class="global-operation-btn" id="globalMultiplicationBtn" onclick="setGlobalProblemType('multiplication')">
+                        <span>&#215; Multiplication</span>
+                    </button>
+                    <button class="global-operation-btn" id="globalDivisionBtn" onclick="setGlobalProblemType('division')">
+                        <span>&#247; Division</span>
+                    </button>
+                    <button class="global-operation-btn active" id="globalBothBtn" onclick="setGlobalProblemType('both')">
+                        <span>&#215; &#247; Both</span>
+                    </button>
                 </div>
             </div>
             
@@ -551,7 +906,7 @@
 
     <div id="statsScreen" class="screen">
         <div class="stats-header">
-            <button class="back-btn" onclick="closeStatsScreen()">?</button>
+            <button class="back-btn" onclick="closeStatsScreen()">&#x2190;</button>
             <h1>Statistics</h1>
             <div style="width: 48px;"></div>
         </div>
@@ -575,6 +930,17 @@
                 </div>
             </div>
 
+            <div id="masteredEquationsContainer" style="display: none; margin-bottom: 20px;">
+                <div style="background-color: #e8f5e9; padding: 20px; border-radius: 10px; border: 2px solid #4CAF50;">
+                    <h2 style="font-size: 20px; margin-bottom: 15px; color: #333; display: flex; align-items: center; gap: 10px;">
+                        <span style="font-size: 24px;">&#x2713;</span>
+                        Mastered Equations (Currently Skipped)
+                    </h2>
+                    <div id="masteredEquationsList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; font-size: 16px; color: #333;"></div>
+                </div>
+                <button class="reset-stats-btn" onclick="resetPermanentMastery()" id="resetMasteryBtn" style="background-color: #FF9800; margin-top: 10px; display: none;">Reset Permanently Mastered Equations</button>
+            </div>
+
             <div id="statsTableContainer"></div>
             
             <button class="reset-stats-btn" onclick="confirmResetStats()">Reset All Statistics</button>
@@ -586,15 +952,43 @@
         <div class="flash-message" id="flashMessage"></div>
     </div>
 
+    <div id="pauseOverlay" class="pause-overlay">
+        <div class="pause-content">
+            <div class="pause-icon">&#x23F8;</div>
+            <div class="pause-title">Paused</div>
+            <button class="resume-btn" onclick="togglePause()">Resume Practice</button>
+        </div>
+    </div>
+
     <script>
         let currentProblem = null;
         let currentAnswer = '';
         let enabledFamilies = [];
+        let familyOperations = {};
+        let enabledEquations = {};
         let allProblems = [];
         let problemStats = {};
         let timerEnabled = false;
         let timeLimit = 5;
         let problemTimer = null;
+        let practiceTimeEnabled = false;
+        let practiceTimeLimit = 10;
+        let practiceStartTime = null;
+        let practiceTimer = null;
+        let practiceElapsedTime = 0;
+        let practicePaused = false;
+        let correctAnswersEnabled = false;
+        let correctAnswersLimit = 50;
+        let sessionCorrectCount = 0;
+        let progressUpdateTimer = null;
+        let isPaused = false;
+        let masteryEnabled = false;
+        let masteryThreshold = 3;
+        let masteryPersistent = false;
+        let consecutiveCorrect = {};
+        let masteredEquations = new Set();
+        let permanentlyMasteredEquations = new Set();
+        let sessionMasteredEquations = [];
 
         function generateAllFactFamilies() {
             const families = [];
@@ -620,60 +1014,68 @@
                 const family = allFactFamilies.find(f => f.id === familyId);
                 if (family) {
                     const { a, b, c } = family;
+                    const operations = familyOperations[familyId] || { multiplication: true, division: true };
+                    const equations = enabledEquations[familyId] || {};
                     
-                    const prob1 = {
-                        display: `${a} \u00D7 ${b} = ?`,
-                        answer: c.toString(),
-                        id: `${a}*${b}`
-                    };
-                    allProblems.push(prob1);
-                    if (!problemStats[prob1.id]) {
-                        problemStats[prob1.id] = { asked: 0, correct: 0 };
-                    }
-                    
-                    if (a !== b) {
-                        const prob2 = {
-                            display: `${b} \u00D7 ${a} = ?`,
-                            answer: c.toString(),
-                            id: `${b}*${a}`
-                        };
-                        allProblems.push(prob2);
-                        if (!problemStats[prob2.id]) {
-                            problemStats[prob2.id] = { asked: 0, correct: 0 };
+                    if (operations.multiplication) {
+                        const eqId1 = `${a}*${b}`;
+                        if (equations[eqId1] !== false && !masteredEquations.has(eqId1) && !permanentlyMasteredEquations.has(eqId1)) {
+                            const prob1 = {
+                                display: `${a} \u00D7 ${b} = ?`,
+                                answer: c.toString(),
+                                id: eqId1
+                            };
+                            allProblems.push(prob1);
+                            if (!problemStats[prob1.id]) {
+                                problemStats[prob1.id] = { asked: 0, correct: 0 };
+                            }
+                        }
+                        
+                        if (a !== b) {
+                            const eqId2 = `${b}*${a}`;
+                            if (equations[eqId2] !== false && !masteredEquations.has(eqId2) && !permanentlyMasteredEquations.has(eqId2)) {
+                                const prob2 = {
+                                    display: `${b} \u00D7 ${a} = ?`,
+                                    answer: c.toString(),
+                                    id: eqId2
+                                };
+                                allProblems.push(prob2);
+                                if (!problemStats[prob2.id]) {
+                                    problemStats[prob2.id] = { asked: 0, correct: 0 };
+                                }
+                            }
                         }
                     }
                     
-                    if (a !== 0) {
-                        const prob3 = {
-                            display: `${c} \u00F7 ${a} = ?`,
-                            answer: b.toString(),
-                            id: `${c}/${a}`
-                        };
-                        allProblems.push(prob3);
-                        if (!problemStats[prob3.id]) {
-                            problemStats[prob3.id] = { asked: 0, correct: 0 };
+                    if (operations.division) {
+                        if (a !== 0) {
+                            const eqId3 = `${c}/${a}`;
+                            if (equations[eqId3] !== false && !masteredEquations.has(eqId3) && !permanentlyMasteredEquations.has(eqId3)) {
+                                const prob3 = {
+                                    display: `${c} \u00F7 ${a} = ?`,
+                                    answer: b.toString(),
+                                    id: eqId3
+                                };
+                                allProblems.push(prob3);
+                                if (!problemStats[prob3.id]) {
+                                    problemStats[prob3.id] = { asked: 0, correct: 0 };
+                                }
+                            }
                         }
-                    }
-                    
-                    if (b !== 0 && a !== b) {
-                        const prob4 = {
-                            display: `${c} \u00F7 ${b} = ?`,
-                            answer: a.toString(),
-                            id: `${c}/${b}`
-                        };
-                        allProblems.push(prob4);
-                        if (!problemStats[prob4.id]) {
-                            problemStats[prob4.id] = { asked: 0, correct: 0 };
-                        }
-                    } else if (b !== 0 && a === b) {
-                        const prob5 = {
-                            display: `${c} \u00F7 ${b} = ?`,
-                            answer: a.toString(),
-                            id: `${c}/${b}`
-                        };
-                        allProblems.push(prob5);
-                        if (!problemStats[prob5.id]) {
-                            problemStats[prob5.id] = { asked: 0, correct: 0 };
+                        
+                        if (b !== 0) {
+                            const eqId4 = `${c}/${b}`;
+                            if (equations[eqId4] !== false && !masteredEquations.has(eqId4) && !permanentlyMasteredEquations.has(eqId4)) {
+                                const prob4 = {
+                                    display: `${c} \u00F7 ${b} = ?`,
+                                    answer: a.toString(),
+                                    id: eqId4
+                                };
+                                allProblems.push(prob4);
+                                if (!problemStats[prob4.id]) {
+                                    problemStats[prob4.id] = { asked: 0, correct: 0 };
+                                }
+                            }
                         }
                     }
                 }
@@ -695,7 +1097,10 @@
             currentProblem = getRandomProblem();
             currentAnswer = '';
             
-            if (currentProblem.id && problemStats[currentProblem.id]) {
+            if (currentProblem.id) {
+                if (!problemStats[currentProblem.id]) {
+                    problemStats[currentProblem.id] = { asked: 0, correct: 0 };
+                }
                 problemStats[currentProblem.id].asked++;
                 saveStats();
             }
@@ -724,9 +1129,14 @@
                     }
                 }, timeLimit * 1000);
             }
+            
+            updateProgressIndicators();
+            checkPracticeTimeFinish();
         }
 
         function pressNumber(num) {
+            if (isPaused) return;
+            
             if (currentAnswer.length < currentProblem.answer.length) {
                 currentAnswer += num.toString();
                 updateBlanks();
@@ -741,6 +1151,8 @@
         }
 
         function deleteNumber() {
+            if (isPaused) return;
+            
             if (currentAnswer.length > 0) {
                 currentAnswer = currentAnswer.slice(0, -1);
                 updateBlanks();
@@ -759,9 +1171,48 @@
         function gradeAnswer() {
             const isCorrect = currentAnswer === currentProblem.answer;
             
-            if (isCorrect && currentProblem.id && problemStats[currentProblem.id]) {
+            if (isCorrect && currentProblem.id) {
+                if (!problemStats[currentProblem.id]) {
+                    problemStats[currentProblem.id] = { asked: 0, correct: 0 };
+                }
                 problemStats[currentProblem.id].correct++;
+                sessionCorrectCount++;
                 saveStats();
+                
+                if (masteryEnabled) {
+                    if (!consecutiveCorrect[currentProblem.id]) {
+                        consecutiveCorrect[currentProblem.id] = 0;
+                    }
+                    consecutiveCorrect[currentProblem.id]++;
+                    
+                    if (consecutiveCorrect[currentProblem.id] >= masteryThreshold) {
+                        masteredEquations.add(currentProblem.id);
+                        sessionMasteredEquations.push(currentProblem.display.replace(' = ?', ' = ' + currentProblem.answer));
+                        
+                        if (masteryPersistent) {
+                            permanentlyMasteredEquations.add(currentProblem.id);
+                            savePermanentMastery();
+                        }
+                        
+                        generateProblems();
+                        
+                        if (allProblems.length === 0) {
+                            showFinishScreen('Mastery Achieved!', 'You have mastered all selected equations!');
+                            return;
+                        }
+                    }
+                } else {
+                    consecutiveCorrect[currentProblem.id] = 0;
+                }
+                
+                updateProgressIndicators();
+                
+                if (correctAnswersEnabled && sessionCorrectCount >= correctAnswersLimit) {
+                    showFinishScreen('Congratulations!', `You reached your goal of ${correctAnswersLimit} correct answers!`);
+                    return;
+                }
+            } else if (masteryEnabled && currentProblem.id) {
+                consecutiveCorrect[currentProblem.id] = 0;
             }
             
             const overlay = document.getElementById('flashOverlay');
@@ -770,11 +1221,11 @@
             
             if (isCorrect) {
                 overlay.className = 'flash-overlay show correct';
-                icon.innerHTML = '&#10003;';
+                icon.innerHTML = '&#x2713;';
                 message.textContent = 'Correct!';
             } else {
                 overlay.className = 'flash-overlay show incorrect';
-                icon.innerHTML = '&#10007;';
+                icon.innerHTML = '&#x2717;';
                 message.textContent = `Correct answer: ${currentProblem.answer}`;
             }
             
@@ -794,7 +1245,7 @@
             const message = document.getElementById('flashMessage');
             
             overlay.className = 'flash-overlay show incorrect';
-            icon.innerHTML = '&#9201;';
+            icon.innerHTML = '&#x23F1;';
             message.textContent = `Time's up! Correct answer: ${currentProblem.answer}`;
             
             setTimeout(() => {
@@ -809,13 +1260,34 @@
                 problemTimer = null;
             }
             
+            isPaused = false;
+            document.getElementById('pauseOverlay').classList.remove('show');
+            
+            pausePractice();
+            
             document.getElementById('mainScreen').classList.remove('active');
             document.getElementById('configScreen').classList.add('active');
             renderFactFamilies();
+            updateGlobalOperationButtons();
             
             document.getElementById('timerEnabledCheckbox').checked = timerEnabled;
             document.getElementById('timeLimitInput').value = timeLimit;
             document.getElementById('timerInputGroup').style.display = timerEnabled ? 'flex' : 'none';
+            
+            document.getElementById('practiceTimeEnabledCheckbox').checked = practiceTimeEnabled;
+            document.getElementById('practiceTimeLimitInput').value = practiceTimeLimit;
+            document.getElementById('practiceTimeInputGroup').style.display = practiceTimeEnabled ? 'flex' : 'none';
+            
+            document.getElementById('correctAnswersEnabledCheckbox').checked = correctAnswersEnabled;
+            document.getElementById('correctAnswersLimitInput').value = correctAnswersLimit;
+            document.getElementById('correctAnswersInputGroup').style.display = correctAnswersEnabled ? 'flex' : 'none';
+            
+            document.getElementById('masteryEnabledCheckbox').checked = masteryEnabled;
+            document.getElementById('masteryThresholdInput').value = masteryThreshold;
+            document.getElementById('masteryInputGroup').style.display = masteryEnabled ? 'flex' : 'none';
+            document.getElementById('masteryPersistentCheckbox').checked = masteryPersistent;
+            document.getElementById('masteryPersistentGroup').style.display = masteryEnabled ? 'flex' : 'none';
+            document.getElementById('masteryResetHint').style.display = masteryEnabled ? 'block' : 'none';
         }
 
         function showMainScreen() {
@@ -823,7 +1295,13 @@
             document.getElementById('statsScreen').classList.remove('active');
             document.getElementById('mainScreen').classList.add('active');
             
-            if (timerEnabled && timeLimit > 0 && currentProblem && currentAnswer.length < currentProblem.answer.length) {
+            if (isPaused) {
+                document.getElementById('pauseOverlay').classList.add('show');
+            }
+            
+            resumePractice();
+            
+            if (timerEnabled && timeLimit > 0 && currentProblem && currentAnswer.length < currentProblem.answer.length && !isPaused) {
                 problemTimer = setTimeout(() => {
                     if (currentAnswer.length < currentProblem.answer.length) {
                         handleTimeout();
@@ -841,6 +1319,11 @@
                 clearTimeout(problemTimer);
                 problemTimer = null;
             }
+            
+            isPaused = false;
+            document.getElementById('pauseOverlay').classList.remove('show');
+            
+            pausePractice();
             
             document.getElementById('mainScreen').classList.remove('active');
             document.getElementById('statsScreen').classList.add('active');
@@ -867,6 +1350,18 @@
             
             const overallAccuracy = totalAsked > 0 ? Math.round((totalCorrect / totalAsked) * 100) : 0;
             document.getElementById('overallAccuracy').textContent = overallAccuracy + '%';
+            
+            const masteredCount = permanentlyMasteredEquations.size;
+            let masteredSummaryHTML = '';
+            if (masteredCount > 0) {
+                masteredSummaryHTML = `
+                    <div class="summary-item">
+                        <div class="summary-value" style="color: #4CAF50;">${masteredCount}</div>
+                        <div class="summary-label">Permanently Mastered</div>
+                    </div>
+                `;
+                document.querySelector('.summary-grid').innerHTML += masteredSummaryHTML;
+            }
             
             const container = document.getElementById('statsTableContainer');
             
@@ -900,7 +1395,7 @@
                 const accuracy = stats.asked > 0 ? Math.round((stats.correct / stats.asked) * 100) : 0;
                 const accuracyClass = accuracy >= 80 ? '' : accuracy >= 60 ? 'medium' : 'low';
                 
-                const problemDisplay = id.replace('*', ' × ').replace('/', ' ÷ ');
+                const problemDisplay = id.replace('*', ' \u00D7 ').replace('/', ' \u00F7 ');
                 
                 tableHTML += `
                     <tr>
@@ -925,6 +1420,62 @@
             `;
             
             container.innerHTML = tableHTML;
+            
+            const masteredContainer = document.getElementById('masteredEquationsContainer');
+            const masteredList = document.getElementById('masteredEquationsList');
+            const allMastered = new Set([...masteredEquations, ...permanentlyMasteredEquations]);
+            
+            if (allMastered.size > 0) {
+                masteredContainer.style.display = 'block';
+                masteredList.innerHTML = '';
+                
+                const sortedMastered = Array.from(allMastered).sort((a, b) => {
+                    const getNumber = (eq) => {
+                        const match = eq.match(/^(\d+)/);
+                        return match ? parseInt(match[1]) : 0;
+                    };
+                    return getNumber(a) - getNumber(b);
+                });
+                
+                sortedMastered.forEach(eqId => {
+                    let displayEq = '';
+                    
+                    if (eqId.includes('*')) {
+                        const parts = eqId.split('*');
+                        const a = parseInt(parts[0]);
+                        const b = parseInt(parts[1]);
+                        const result = a * b;
+                        displayEq = `${a} \u00D7 ${b} = ${result}`;
+                    } else if (eqId.includes('/')) {
+                        const parts = eqId.split('/');
+                        const c = parseInt(parts[0]);
+                        const divisor = parseInt(parts[1]);
+                        const result = c / divisor;
+                        displayEq = `${c} \u00F7 ${divisor} = ${result}`;
+                    }
+                    
+                    const isPermanent = permanentlyMasteredEquations.has(eqId);
+                    const eqDiv = document.createElement('div');
+                    eqDiv.style.cssText = 'padding: 8px 12px; background-color: white; border-radius: 6px; border: 2px solid #4CAF50; text-align: center; font-weight: 500;';
+                    if (isPermanent) {
+                        eqDiv.style.borderColor = '#2196F3';
+                        eqDiv.style.backgroundColor = '#e3f2fd';
+                        eqDiv.innerHTML = `<div style="font-size: 12px; color: #1976D2; margin-bottom: 2px;">&#x1F4BE; Permanent</div><div>${displayEq}</div>`;
+                    } else {
+                        eqDiv.textContent = displayEq;
+                    }
+                    masteredList.appendChild(eqDiv);
+                });
+            } else {
+                masteredContainer.style.display = 'none';
+            }
+            
+            const resetMasteryBtn = document.getElementById('resetMasteryBtn');
+            if (permanentlyMasteredEquations.size > 0) {
+                resetMasteryBtn.style.display = 'block';
+            } else {
+                resetMasteryBtn.style.display = 'none';
+            }
         }
 
         function confirmResetStats() {
@@ -955,6 +1506,72 @@
                     div.className = 'fact-family-group';
                     
                     const isChecked = enabledFamilies.includes(family.id);
+                    const operations = familyOperations[family.id] || { multiplication: true, division: true };
+                    const equations = enabledEquations[family.id] || {};
+                    
+                    const eq1Id = `${family.a}*${family.b}`;
+                    const eq2Id = `${family.b}*${family.a}`;
+                    const eq3Id = `${family.c}/${family.a}`;
+                    const eq4Id = `${family.c}/${family.b}`;
+                    
+                    const eq1Enabled = equations[eq1Id] !== false && operations.multiplication;
+                    const eq2Enabled = equations[eq2Id] !== false && operations.multiplication;
+                    const eq3Enabled = equations[eq3Id] !== false && operations.division;
+                    const eq4Enabled = equations[eq4Id] !== false && operations.division;
+                    
+                    let examplesHTML = `<div class="fact-family-examples">`;
+                    
+                    if (operations.multiplication) {
+                        examplesHTML += `
+                            <div class="equation-item ${eq1Enabled ? '' : 'disabled'}">
+                                <input type="checkbox" class="equation-checkbox" 
+                                       ${eq1Enabled ? 'checked' : ''}
+                                       onchange="toggleEquation('${family.id}', '${eq1Id}')"
+                                       ${!isChecked ? 'disabled' : ''}>
+                                <span class="equation-text">${family.a} \u00D7 ${family.b} = ${family.c}</span>
+                            </div>
+                        `;
+                        
+                        if (family.a !== family.b) {
+                            examplesHTML += `
+                                <div class="equation-item ${eq2Enabled ? '' : 'disabled'}">
+                                    <input type="checkbox" class="equation-checkbox" 
+                                           ${eq2Enabled ? 'checked' : ''}
+                                           onchange="toggleEquation('${family.id}', '${eq2Id}')"
+                                           ${!isChecked ? 'disabled' : ''}>
+                                    <span class="equation-text">${family.b} \u00D7 ${family.a} = ${family.c}</span>
+                                </div>
+                            `;
+                        }
+                    }
+                    
+                    if (operations.division) {
+                        if (family.a !== 0) {
+                            examplesHTML += `
+                                <div class="equation-item ${eq3Enabled ? '' : 'disabled'}">
+                                    <input type="checkbox" class="equation-checkbox" 
+                                           ${eq3Enabled ? 'checked' : ''}
+                                           onchange="toggleEquation('${family.id}', '${eq3Id}')"
+                                           ${!isChecked ? 'disabled' : ''}>
+                                    <span class="equation-text">${family.c} \u00F7 ${family.a} = ${family.b}</span>
+                                </div>
+                            `;
+                        }
+                        
+                        if (family.b !== 0) {
+                            examplesHTML += `
+                                <div class="equation-item ${eq4Enabled ? '' : 'disabled'}">
+                                    <input type="checkbox" class="equation-checkbox" 
+                                           ${eq4Enabled ? 'checked' : ''}
+                                           onchange="toggleEquation('${family.id}', '${eq4Id}')"
+                                           ${!isChecked ? 'disabled' : ''}>
+                                    <span class="equation-text">${family.c} \u00F7 ${family.b} = ${family.a}</span>
+                                </div>
+                            `;
+                        }
+                    }
+                    
+                    examplesHTML += `</div>`;
                     
                     div.innerHTML = `
                         <div class="fact-family-header">
@@ -966,12 +1583,7 @@
                                 ${family.a} \u00D7 ${family.b} Family
                             </label>
                         </div>
-                        <div class="fact-family-examples">
-                            ${family.a} \u00D7 ${family.b} = ${family.c}<br>
-                            ${family.b} \u00D7 ${family.a} = ${family.c}<br>
-                            ${family.a !== 0 ? `${family.c} \u00F7 ${family.a} = ${family.b}<br>` : ''}
-                            ${family.b !== 0 ? `${family.c} \u00F7 ${family.b} = ${family.a}` : ''}
-                        </div>
+                        ${examplesHTML}
                     `;
                     
                     container.appendChild(div);
@@ -979,12 +1591,121 @@
             });
         }
 
+        function toggleEquation(familyId, equationId) {
+            if (!enabledEquations[familyId]) {
+                enabledEquations[familyId] = {};
+            }
+            
+            const currentState = enabledEquations[familyId][equationId] !== false;
+            enabledEquations[familyId][equationId] = !currentState;
+            
+            renderFactFamilies();
+        }
+
         function toggleFamily(familyId) {
             const index = enabledFamilies.indexOf(familyId);
+            
             if (index > -1) {
                 enabledFamilies.splice(index, 1);
             } else {
                 enabledFamilies.push(familyId);
+                if (!familyOperations[familyId]) {
+                    familyOperations[familyId] = { multiplication: true, division: true };
+                }
+            }
+            renderFactFamilies();
+            updateGlobalOperationButtons();
+        }
+
+        function setGlobalProblemType(type) {
+            const multiBtn = document.getElementById('globalMultiplicationBtn');
+            const divBtn = document.getElementById('globalDivisionBtn');
+            const bothBtn = document.getElementById('globalBothBtn');
+            
+            multiBtn.classList.remove('active');
+            divBtn.classList.remove('active');
+            bothBtn.classList.remove('active');
+            
+            if (type === 'multiplication') {
+                multiBtn.classList.add('active');
+                enabledFamilies.forEach(familyId => {
+                    if (!familyOperations[familyId]) {
+                        familyOperations[familyId] = { multiplication: true, division: true };
+                    }
+                    familyOperations[familyId].multiplication = true;
+                    familyOperations[familyId].division = false;
+                    
+                    if (!enabledEquations[familyId]) {
+                        enabledEquations[familyId] = {};
+                    }
+                });
+            } else if (type === 'division') {
+                divBtn.classList.add('active');
+                enabledFamilies.forEach(familyId => {
+                    if (!familyOperations[familyId]) {
+                        familyOperations[familyId] = { multiplication: true, division: true };
+                    }
+                    familyOperations[familyId].multiplication = false;
+                    familyOperations[familyId].division = true;
+                    
+                    if (!enabledEquations[familyId]) {
+                        enabledEquations[familyId] = {};
+                    }
+                });
+            } else {
+                bothBtn.classList.add('active');
+                enabledFamilies.forEach(familyId => {
+                    if (!familyOperations[familyId]) {
+                        familyOperations[familyId] = { multiplication: true, division: true };
+                    }
+                    familyOperations[familyId].multiplication = true;
+                    familyOperations[familyId].division = true;
+                    
+                    if (!enabledEquations[familyId]) {
+                        enabledEquations[familyId] = {};
+                    }
+                });
+            }
+            
+            renderFactFamilies();
+        }
+
+        function updateGlobalOperationButtons() {
+            const multiBtn = document.getElementById('globalMultiplicationBtn');
+            const divBtn = document.getElementById('globalDivisionBtn');
+            const bothBtn = document.getElementById('globalBothBtn');
+            
+            if (!multiBtn || !divBtn || !bothBtn) return;
+            
+            if (enabledFamilies.length === 0) {
+                multiBtn.classList.remove('active');
+                divBtn.classList.remove('active');
+                bothBtn.classList.add('active');
+                return;
+            }
+            
+            const allMultiEnabled = enabledFamilies.every(familyId => {
+                const ops = familyOperations[familyId] || { multiplication: true, division: true };
+                return ops.multiplication;
+            });
+            
+            const allDivEnabled = enabledFamilies.every(familyId => {
+                const ops = familyOperations[familyId] || { multiplication: true, division: true };
+                return ops.division;
+            });
+            
+            multiBtn.classList.remove('active');
+            divBtn.classList.remove('active');
+            bothBtn.classList.remove('active');
+            
+            if (allMultiEnabled && allDivEnabled) {
+                bothBtn.classList.add('active');
+            } else if (allMultiEnabled && !allDivEnabled) {
+                multiBtn.classList.add('active');
+            } else if (!allMultiEnabled && allDivEnabled) {
+                divBtn.classList.add('active');
+            } else {
+                bothBtn.classList.add('active');
             }
         }
 
@@ -994,8 +1715,14 @@
                 enabledFamilies = [];
             } else {
                 enabledFamilies = allFactFamilies.map(f => f.id);
+                allFactFamilies.forEach(family => {
+                    if (!familyOperations[family.id]) {
+                        familyOperations[family.id] = { multiplication: true, division: true };
+                    }
+                });
             }
             renderFactFamilies();
+            updateGlobalOperationButtons();
         }
 
         function toggleTimerSetting() {
@@ -1004,18 +1731,279 @@
             inputGroup.style.display = checkbox.checked ? 'flex' : 'none';
         }
 
+        function togglePracticeTimeSetting() {
+            const checkbox = document.getElementById('practiceTimeEnabledCheckbox');
+            const inputGroup = document.getElementById('practiceTimeInputGroup');
+            inputGroup.style.display = checkbox.checked ? 'flex' : 'none';
+        }
+
+        function toggleCorrectAnswersSetting() {
+            const checkbox = document.getElementById('correctAnswersEnabledCheckbox');
+            const inputGroup = document.getElementById('correctAnswersInputGroup');
+            inputGroup.style.display = checkbox.checked ? 'flex' : 'none';
+        }
+
+        function toggleMasterySetting() {
+            const checkbox = document.getElementById('masteryEnabledCheckbox');
+            const inputGroup = document.getElementById('masteryInputGroup');
+            const persistentGroup = document.getElementById('masteryPersistentGroup');
+            const resetHint = document.getElementById('masteryResetHint');
+            const isEnabled = checkbox.checked;
+            inputGroup.style.display = isEnabled ? 'flex' : 'none';
+            persistentGroup.style.display = isEnabled ? 'flex' : 'none';
+            resetHint.style.display = isEnabled ? 'block' : 'none';
+        }
+
+        function checkPracticeTimeFinish() {
+            if (practiceTimeEnabled && practiceStartTime && !practicePaused) {
+                const currentElapsed = practiceElapsedTime + (Date.now() - practiceStartTime);
+                const elapsedMinutes = currentElapsed / 60000;
+                if (elapsedMinutes >= practiceTimeLimit) {
+                    showFinishScreen('Time\'s Up!', `You practiced for ${practiceTimeLimit} minutes!`);
+                }
+            }
+        }
+
+        function pausePractice() {
+            if (practiceTimeEnabled && practiceStartTime && !practicePaused) {
+                practiceElapsedTime += (Date.now() - practiceStartTime);
+                practicePaused = true;
+                
+                if (practiceTimer) {
+                    clearInterval(practiceTimer);
+                    practiceTimer = null;
+                }
+            }
+            
+            if (progressUpdateTimer) {
+                clearInterval(progressUpdateTimer);
+                progressUpdateTimer = null;
+            }
+        }
+
+        function resumePractice() {
+            if (practiceTimeEnabled && practicePaused) {
+                practiceStartTime = Date.now();
+                practicePaused = false;
+                
+                if (!practiceTimer) {
+                    practiceTimer = setInterval(() => {
+                        checkPracticeTimeFinish();
+                    }, 1000);
+                }
+            }
+            
+            startProgressUpdates();
+        }
+
+        function startProgressUpdates() {
+            if (progressUpdateTimer) {
+                clearInterval(progressUpdateTimer);
+            }
+            
+            updateProgressIndicators();
+            
+            if (practiceTimeEnabled || correctAnswersEnabled) {
+                progressUpdateTimer = setInterval(() => {
+                    updateProgressIndicators();
+                }, 1000);
+            }
+        }
+
+        function updateProgressIndicators() {
+            const container = document.getElementById('progressIndicators');
+            
+            if (!practiceTimeEnabled && !correctAnswersEnabled) {
+                container.style.display = 'none';
+                return;
+            }
+            
+            container.style.display = 'flex';
+            container.innerHTML = '';
+            
+            if (practiceTimeEnabled && !practicePaused && practiceStartTime) {
+                const currentElapsed = practiceElapsedTime + (Date.now() - practiceStartTime);
+                const elapsedMinutes = currentElapsed / 60000;
+                const remainingMinutes = Math.max(0, practiceTimeLimit - elapsedMinutes);
+                const remainingSeconds = Math.floor(remainingMinutes * 60);
+                
+                const minutes = Math.floor(remainingSeconds / 60);
+                const seconds = remainingSeconds % 60;
+                const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                let valueClass = '';
+                if (remainingMinutes < 1) {
+                    valueClass = 'urgent';
+                } else if (remainingMinutes < 2) {
+                    valueClass = 'warning';
+                }
+                
+                const timeIndicator = document.createElement('div');
+                timeIndicator.className = 'progress-indicator';
+                timeIndicator.innerHTML = `
+                    <div class="progress-icon">&#x23F1;</div>
+                    <div class="progress-info">
+                        <div class="progress-label">Time Remaining</div>
+                        <div class="progress-value ${valueClass}">${timeString}</div>
+                    </div>
+                `;
+                container.appendChild(timeIndicator);
+            }
+            
+            if (correctAnswersEnabled) {
+                const remaining = Math.max(0, correctAnswersLimit - sessionCorrectCount);
+                
+                let valueClass = '';
+                if (remaining <= 5) {
+                    valueClass = 'urgent';
+                } else if (remaining <= 10) {
+                    valueClass = 'warning';
+                }
+                
+                const answersIndicator = document.createElement('div');
+                answersIndicator.className = 'progress-indicator';
+                answersIndicator.innerHTML = `
+                    <div class="progress-icon">&#x2713;</div>
+                    <div class="progress-info">
+                        <div class="progress-label">Correct Answers Needed</div>
+                        <div class="progress-value ${valueClass}">${remaining}</div>
+                    </div>
+                `;
+                container.appendChild(answersIndicator);
+            }
+        }
+
+        function resetPracticeTimer() {
+            practiceElapsedTime = 0;
+            practiceStartTime = practiceTimeEnabled ? Date.now() : null;
+            practicePaused = false;
+            
+            if (practiceTimer) {
+                clearInterval(practiceTimer);
+                practiceTimer = null;
+            }
+            
+            if (practiceTimeEnabled) {
+                practiceTimer = setInterval(() => {
+                    checkPracticeTimeFinish();
+                }, 1000);
+            }
+        }
+
+        function showFinishScreen(title, message) {
+            if (problemTimer) {
+                clearTimeout(problemTimer);
+                problemTimer = null;
+            }
+            if (practiceTimer) {
+                clearInterval(practiceTimer);
+                practiceTimer = null;
+            }
+            if (progressUpdateTimer) {
+                clearInterval(progressUpdateTimer);
+                progressUpdateTimer = null;
+            }
+            
+            practicePaused = true;
+            
+            const overlay = document.getElementById('flashOverlay');
+            const icon = document.getElementById('flashIcon');
+            const flashMessage = document.getElementById('flashMessage');
+            
+            overlay.className = 'flash-overlay show correct';
+            icon.innerHTML = '&#x1F389;';
+            
+            let messageHTML = `<div style="font-size: 42px; margin-bottom: 10px;">${title}</div><div style="font-size: 28px;">${message}</div>`;
+            
+            if (masteryEnabled && sessionMasteredEquations.length > 0) {
+                messageHTML += `<div style="margin-top: 30px; font-size: 24px; font-weight: bold;">Equations Mastered:</div>`;
+                messageHTML += `<div style="margin-top: 15px; font-size: 18px; line-height: 1.4; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px 20px; max-width: 90%; margin-left: auto; margin-right: auto; max-height: 300px; overflow-y: auto; padding: 10px;">`;
+                sessionMasteredEquations.forEach(eq => {
+                    messageHTML += `<div style="text-align: left;">&#x2713; ${eq}</div>`;
+                });
+                messageHTML += `</div>`;
+            }
+            
+            messageHTML += `<button class="close-finish-btn" onclick="closeFinishScreen()">Close</button>`;
+            
+            flashMessage.innerHTML = messageHTML;
+        }
+
+        function closeFinishScreen() {
+            const overlay = document.getElementById('flashOverlay');
+            overlay.className = 'flash-overlay';
+            showConfigScreen();
+        }
+
+        function togglePause() {
+            isPaused = !isPaused;
+            const pauseOverlay = document.getElementById('pauseOverlay');
+            
+            if (isPaused) {
+                pauseOverlay.classList.add('show');
+                
+                if (problemTimer) {
+                    clearTimeout(problemTimer);
+                    problemTimer = null;
+                }
+                
+                pausePractice();
+            } else {
+                pauseOverlay.classList.remove('show');
+                
+                resumePractice();
+                
+                if (timerEnabled && timeLimit > 0 && currentProblem && currentAnswer.length < currentProblem.answer.length) {
+                    problemTimer = setTimeout(() => {
+                        if (currentAnswer.length < currentProblem.answer.length) {
+                            handleTimeout();
+                        }
+                    }, timeLimit * 1000);
+                }
+            }
+        }
+
         function saveConfig() {
             timerEnabled = document.getElementById('timerEnabledCheckbox').checked;
             const timeLimitValue = parseInt(document.getElementById('timeLimitInput').value);
             timeLimit = (timeLimitValue >= 1 && timeLimitValue <= 60) ? timeLimitValue : 5;
             
+            practiceTimeEnabled = document.getElementById('practiceTimeEnabledCheckbox').checked;
+            const practiceTimeLimitValue = parseInt(document.getElementById('practiceTimeLimitInput').value);
+            practiceTimeLimit = (practiceTimeLimitValue >= 1 && practiceTimeLimitValue <= 120) ? practiceTimeLimitValue : 10;
+            
+            correctAnswersEnabled = document.getElementById('correctAnswersEnabledCheckbox').checked;
+            const correctAnswersLimitValue = parseInt(document.getElementById('correctAnswersLimitInput').value);
+            correctAnswersLimit = (correctAnswersLimitValue >= 1 && correctAnswersLimitValue <= 500) ? correctAnswersLimitValue : 50;
+            
+            masteryEnabled = document.getElementById('masteryEnabledCheckbox').checked;
+            const masteryThresholdValue = parseInt(document.getElementById('masteryThresholdInput').value);
+            masteryThreshold = (masteryThresholdValue >= 1 && masteryThresholdValue <= 20) ? masteryThresholdValue : 3;
+            masteryPersistent = document.getElementById('masteryPersistentCheckbox').checked;
+            
             try {
                 localStorage.setItem('quickmath-config', JSON.stringify(enabledFamilies));
+                localStorage.setItem('quickmath-operations', JSON.stringify(familyOperations));
+                localStorage.setItem('quickmath-equations', JSON.stringify(enabledEquations));
                 localStorage.setItem('quickmath-timer-enabled', JSON.stringify(timerEnabled));
                 localStorage.setItem('quickmath-time-limit', JSON.stringify(timeLimit));
+                localStorage.setItem('quickmath-practice-time-enabled', JSON.stringify(practiceTimeEnabled));
+                localStorage.setItem('quickmath-practice-time-limit', JSON.stringify(practiceTimeLimit));
+                localStorage.setItem('quickmath-correct-answers-enabled', JSON.stringify(correctAnswersEnabled));
+                localStorage.setItem('quickmath-correct-answers-limit', JSON.stringify(correctAnswersLimit));
+                localStorage.setItem('quickmath-mastery-enabled', JSON.stringify(masteryEnabled));
+                localStorage.setItem('quickmath-mastery-threshold', JSON.stringify(masteryThreshold));
+                localStorage.setItem('quickmath-mastery-persistent', JSON.stringify(masteryPersistent));
             } catch (e) {
                 console.log('Could not save to localStorage:', e);
             }
+            
+            sessionCorrectCount = 0;
+            isPaused = false;
+            consecutiveCorrect = {};
+            masteredEquations = new Set();
+            sessionMasteredEquations = [];
+            resetPracticeTimer();
             
             generateProblems();
             showMainScreen();
@@ -1031,6 +2019,23 @@
                     enabledFamilies = allFactFamilies.map(f => f.id);
                 }
                 
+                const savedOperations = localStorage.getItem('quickmath-operations');
+                if (savedOperations) {
+                    familyOperations = JSON.parse(savedOperations);
+                } else {
+                    familyOperations = {};
+                    enabledFamilies.forEach(familyId => {
+                        familyOperations[familyId] = { multiplication: true, division: true };
+                    });
+                }
+                
+                const savedEquations = localStorage.getItem('quickmath-equations');
+                if (savedEquations) {
+                    enabledEquations = JSON.parse(savedEquations);
+                } else {
+                    enabledEquations = {};
+                }
+                
                 const savedTimerEnabled = localStorage.getItem('quickmath-timer-enabled');
                 if (savedTimerEnabled !== null) {
                     timerEnabled = JSON.parse(savedTimerEnabled);
@@ -1040,11 +2045,53 @@
                 if (savedTimeLimit !== null) {
                     timeLimit = JSON.parse(savedTimeLimit);
                 }
+                
+                const savedPracticeTimeEnabled = localStorage.getItem('quickmath-practice-time-enabled');
+                if (savedPracticeTimeEnabled !== null) {
+                    practiceTimeEnabled = JSON.parse(savedPracticeTimeEnabled);
+                }
+                
+                const savedPracticeTimeLimit = localStorage.getItem('quickmath-practice-time-limit');
+                if (savedPracticeTimeLimit !== null) {
+                    practiceTimeLimit = JSON.parse(savedPracticeTimeLimit);
+                }
+                
+                const savedCorrectAnswersEnabled = localStorage.getItem('quickmath-correct-answers-enabled');
+                if (savedCorrectAnswersEnabled !== null) {
+                    correctAnswersEnabled = JSON.parse(savedCorrectAnswersEnabled);
+                }
+                
+                const savedCorrectAnswersLimit = localStorage.getItem('quickmath-correct-answers-limit');
+                if (savedCorrectAnswersLimit !== null) {
+                    correctAnswersLimit = JSON.parse(savedCorrectAnswersLimit);
+                }
+                
+                const savedMasteryEnabled = localStorage.getItem('quickmath-mastery-enabled');
+                if (savedMasteryEnabled !== null) {
+                    masteryEnabled = JSON.parse(savedMasteryEnabled);
+                }
+                
+                const savedMasteryThreshold = localStorage.getItem('quickmath-mastery-threshold');
+                if (savedMasteryThreshold !== null) {
+                    masteryThreshold = JSON.parse(savedMasteryThreshold);
+                }
+                
+                const savedMasteryPersistent = localStorage.getItem('quickmath-mastery-persistent');
+                if (savedMasteryPersistent !== null) {
+                    masteryPersistent = JSON.parse(savedMasteryPersistent);
+                }
             } catch (e) {
                 console.log('Could not load from localStorage:', e);
                 enabledFamilies = allFactFamilies.map(f => f.id);
                 timerEnabled = false;
                 timeLimit = 5;
+                practiceTimeEnabled = false;
+                practiceTimeLimit = 10;
+                correctAnswersEnabled = false;
+                correctAnswersLimit = 50;
+                masteryEnabled = false;
+                masteryThreshold = 3;
+                masteryPersistent = false;
             }
         }
 
@@ -1053,6 +2100,37 @@
                 localStorage.setItem('quickmath-stats', JSON.stringify(problemStats));
             } catch (e) {
                 console.log('Could not save stats to localStorage:', e);
+            }
+        }
+
+        function savePermanentMastery() {
+            try {
+                localStorage.setItem('quickmath-permanent-mastery', JSON.stringify(Array.from(permanentlyMasteredEquations)));
+            } catch (e) {
+                console.log('Could not save permanent mastery to localStorage:', e);
+            }
+        }
+
+        function loadPermanentMastery() {
+            try {
+                const saved = localStorage.getItem('quickmath-permanent-mastery');
+                if (saved) {
+                    permanentlyMasteredEquations = new Set(JSON.parse(saved));
+                } else {
+                    permanentlyMasteredEquations = new Set();
+                }
+            } catch (e) {
+                console.log('Could not load permanent mastery from localStorage:', e);
+                permanentlyMasteredEquations = new Set();
+            }
+        }
+
+        function resetPermanentMastery() {
+            if (confirm('Are you sure you want to reset all permanently mastered equations? This cannot be undone.')) {
+                permanentlyMasteredEquations = new Set();
+                savePermanentMastery();
+                alert('Permanently mastered equations have been reset.');
+                renderStats();
             }
         }
 
@@ -1073,7 +2151,13 @@
         function init() {
             loadConfig();
             loadStats();
+            loadPermanentMastery();
             generateProblems();
+            
+            if (practiceTimeEnabled) {
+                resetPracticeTimer();
+            }
+            
             showNewProblem();
         }
 
